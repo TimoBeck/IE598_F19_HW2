@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
 from sklearn import datasets
 from sklearn.metrics import accuracy_score
 
@@ -25,12 +26,18 @@ for k in k_range:
     y_pred = knn.predict(X_test)
     scores.append(accuracy_score(y_test,y_pred))
 
-print("Accuracy is at the highest when k = " + str(scores.index(max(scores))+1))
+print("Accuracy using KNeighborsClassifier is at the highest when k = " + str(scores.index(max(scores))+1))
 print(max(scores))
 
 plt.plot(k_range,scores,'o')
 plt.ylabel('accuracy score')
-plt.xlabel('n_neighbors')
+plt.xlabel('n_neighbors = k')
+
+# Decision Tree
+dt = DecisionTreeClassifier(max_depth = 2, random_state = 1)
+dt.fit(X_train,y_train)
+y_pred_tree = dt.predict(X_test)
+print("Accuracy using DecisionTreeClassifier is: " + str(accuracy_score(y_test, y_pred)))
 
 print("My name is Timothee Becker")
 print("My NetID is: tbecker5")

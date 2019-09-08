@@ -47,6 +47,7 @@ for l in l_range:
 print("Accuracy using DecisionTreeClassifier is at the highest when l = " + str(scores_2.index(max(scores_2))+1))
 print(max(scores_2))
 
+plt.figure()
 plt.plot(l_range,scores_2,'o')
 plt.ylabel('accuracy score')
 plt.xlabel('Max_depth = l')

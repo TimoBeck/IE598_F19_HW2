@@ -32,12 +32,25 @@ print(max(scores))
 plt.plot(k_range,scores,'o')
 plt.ylabel('accuracy score')
 plt.xlabel('n_neighbors = k')
+plt.title('K-neareast neighbors')
 
 # Decision Tree
-dt = DecisionTreeClassifier(max_depth = 2, random_state = 1)
-dt.fit(X_train,y_train)
-y_pred_tree = dt.predict(X_test)
-print("Accuracy using DecisionTreeClassifier is: " + str(accuracy_score(y_test, y_pred)))
+# Decision Tree
+l_range = range(1,26)
+scores_2 = []
+for l in l_range:
+    dt = DecisionTreeClassifier(max_depth = l, random_state = 1)
+    dt.fit(X_train,y_train)
+    y_pred_tree = dt.predict(X_test)
+    scores_2.append(accuracy_score(y_test,y_pred_tree))
+    
+print("Accuracy using DecisionTreeClassifier is at the highest when l = " + str(scores_2.index(max(scores_2))+1))
+print(max(scores_2))
+
+plt.plot(l_range,scores_2,'o')
+plt.ylabel('accuracy score')
+plt.xlabel('Max_depth = l')
+plt.title('Decision tree')
 
 print("My name is Timothee Becker")
 print("My NetID is: tbecker5")
